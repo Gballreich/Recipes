@@ -14,7 +14,15 @@ const MainInput = () => {
       .split(",")
       .map(item => item.trim())
       .filter(item => item !== "");
-    setIngredients(parsed);
+
+    if (parsed.length === 0) return; // don't update if no valid input
+
+    setIngredients(prev => {
+      const updated = [...new Set([...prev, ...parsed])]; // remove duplicates
+      console.log("Ingredients array:", updated);
+      return updated;
+    });
+    setRawInput(""); // clear input after saving
   };
 
   const handleGetRecipes = () => {
@@ -43,7 +51,10 @@ const MainInput = () => {
       />
       <CategoryDropdown
         category={category}
-        setCategory={setCategory}
+        setCategory={(newCategory) => {
+          console.log("Selected category: ", newCategory);
+          setCategory(newCategory);
+        }}
       />
       <GetRecipesButton
         disabled={ingredients.length === 0}

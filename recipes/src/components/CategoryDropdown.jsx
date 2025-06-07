@@ -1,7 +1,7 @@
 const CategoryDropdown = ({ category, setCategory }) => {
     const options = [
       "All", "Chinese", "Mexican", "Italian", "Japanese",
-      "Indian", "Thai", "Korean", "French", "Spanish", "Greek"
+      "Indian", "Thai", "Korean", "French", "Spanish", "Greek", "Vegetarian"
     ];
   
     return (

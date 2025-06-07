@@ -10,7 +10,7 @@ const OCRUploadButton = ({ onOCRResult }) => {
       <input
         type="file"
         className="w-full px-4 py-2 rounded-lg border dark:border-gray-700 dark:bg-gray-800 text-gray-900 dark:text-white"
-        placeholder="e.g. eggs, spinach, garlic"
+        
       />
       <button
         className="w-full bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg"
