@@ -3,10 +3,13 @@ import IngredientInput from "./IngredientInput";
 import CategoryDropdown from "./CategoryDropdown";
 import GetRecipesButton from "./GetRecipesButton";
 import OCRUploadButton from "./OCRUploadButton";
+import { fetchRecipesFromAI } from "../utils/fetchRecipes";
 
-const MainInput = () => {
+
+
+
+const MainInput = ({ ingredients, setIngredients }) => {
   const [rawInput, setRawInput] = useState("");
-  const [ingredients, setIngredients] = useState([]);
   const [category, setCategory] = useState("All");
 
   const handleSaveIngredients = () => {
@@ -25,12 +28,19 @@ const MainInput = () => {
     setRawInput(""); // clear input after saving
   };
 
-  const handleGetRecipes = () => {
+  const handleGetRecipes = async () => {
     const prompt = category === "All"
-      ? `Suggest a mix of recipes based on these ingredients: ${ingredients.join(", ")}`
-      : `Suggest ${category} recipes based on these ingredients: ${ingredients.join(", ")}`;
+      ? `Suggest 5 unique recipes based on these ingredients: ${ingredients.join(", ")}. 
+          Respond with ONLY JSON format including name, ingredientsNeeded (only what’s needed from the user), cookTime, and link.`
+      : `Suggest 5 ${category} recipes based on these ingredients: ${ingredients.join(", ")}. 
+          Respond in ONLY JSON with name, ingredientsNeeded, cookTime, and link.`;
+  
     console.log("Prompt sent to AI:", prompt);
-    // TODO: send this to AI model
+  
+    const recipes = await fetchRecipesFromAI(prompt);
+    console.log("Recipes received:", recipes);
+  
+    // TODO: Store in state when ready to render them
   };
 
   const handleOCRResult = (ocrText) => {
@@ -42,8 +52,8 @@ const MainInput = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl max-w-md w-full 
-      space-y-4 border-2 border-blue-500 dark:border-blue-400 pb-5">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl w-full max-w-2xl 
+    space-y-4 border-2 border-blue-500 dark:border-blue-400 pb-5">
       <IngredientInput
         rawInput={rawInput}
         setRawInput={setRawInput}
