@@ -1,7 +1,5 @@
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY
 
-console.log("API KEY from env:", import.meta.env.VITE_OPENAI_API_KEY);
-
 export const fetchRecipesFromAI = async (prompt) => {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",

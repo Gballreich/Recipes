@@ -8,9 +8,11 @@ import { fetchRecipesFromAI } from "../utils/fetchRecipes";
 
 
 
-const MainInput = ({ ingredients, setIngredients }) => {
+const MainInput = ({ ingredients, setIngredients,setRecipes }) => {
   const [rawInput, setRawInput] = useState("");
   const [category, setCategory] = useState("All");
+
+
 
   const handleSaveIngredients = () => {
     const parsed = rawInput
@@ -41,6 +43,9 @@ const MainInput = ({ ingredients, setIngredients }) => {
     console.log("Recipes received:", recipes);
   
     // TODO: Store in state when ready to render them
+    if (Array.isArray(recipes)) {
+      setRecipes(recipes);
+    }
   };
 
   const handleOCRResult = (ocrText) => {
