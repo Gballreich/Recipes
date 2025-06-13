@@ -42,9 +42,9 @@ const OCRUploadButton = ({ setIngredients }) => {
         block.lines.map((line) => line.text)
       );
 
-      const combinedText = lines?.join(", ") || "";
+      const combinedText = lines?.join("\n") || "";
       const parsedIngredients = combinedText
-        .split(",")
+        .split(/[\n,-]+/)
         .map((item) => item.trim())
         .filter((item) => item);
 

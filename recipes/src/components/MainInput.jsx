@@ -39,21 +39,15 @@ const MainInput = ({ ingredients, setIngredients,setRecipes }) => {
   
     console.log("Prompt sent to AI:", prompt);
   
-    const recipes = await fetchRecipesFromAI(prompt);
-    console.log("Recipes received:", recipes);
+    const response = await fetchRecipesFromAI(prompt);
+    console.log("Recipes received:", response);
   
-    // TODO: Store in state when ready to render them
-    if (Array.isArray(recipes)) {
-      setRecipes(recipes);
+    // Fix: Extract recipes array from response object
+    if (Array.isArray(response)) {
+      setRecipes(response);
+    } else if (response && Array.isArray(response.recipes)) {
+      setRecipes(response.recipes);
     }
-  };
-
-  const handleOCRResult = (ocrText) => {
-    const newIngredients = ocrText
-      .split(",")
-      .map(item => item.trim())
-      .filter(item => item !== "");
-    setIngredients(prev => [...prev, ...newIngredients]);
   };
 
   return (
@@ -75,7 +69,7 @@ const MainInput = ({ ingredients, setIngredients,setRecipes }) => {
         disabled={ingredients.length === 0}
         onClick={handleGetRecipes}
       />
-      <OCRUploadButton onOCRResult={handleOCRResult} />
+      <OCRUploadButton setIngredients={setIngredients} />
     </div>
   );
 };

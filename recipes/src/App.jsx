@@ -22,13 +22,13 @@ const App = () => {
       </div>
 
         {/* MainInput */}
-        <div className="w-full">
-          <MainInput 
-            ingredients={ingredients} 
-            setIngredients={setIngredients}
-            setRecipes={setRecipes}
-             />
-        </div>
+      <div className="w-full">
+        <MainInput 
+          ingredients={ingredients} 
+          setIngredients={setIngredients}
+          setRecipes={setRecipes}
+            />
+      </div>
 
         {/* DisplayIngredients */}
         <div className="w-full">
