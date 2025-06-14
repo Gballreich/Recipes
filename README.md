@@ -36,7 +36,7 @@ An AI-powered web app that helps users discover recipes based on the ingredients
 ## Setup Instructions
 
 ### 1. Clone the Repository
-- git clone https://github.com/gballreich/recipes.git
+- git clone https://github.com/Gballreich/recipes.git
 - cd recipes
 
 ### 2. Install Dependencies
@@ -62,3 +62,21 @@ An AI-powered web app that helps users discover recipes based on the ingredients
 ---
 
 ## Limitations
+
+### 1. Links returned from OpenAI
+- As of now the majority of the links returned from the OpenAI call are not active and are returning a 404 error.
+### 2. Manually input non-food ingredients
+- There is no validation for users to enter non-food item ingredeints. A user could manually enter a bike, tv, and ceramic and the AI would try to recommend recipes based on those ingredients.
+### 3. Image upload non-food ingredients
+- There is no validation for users who upload and image of hand written ingredients that are non-food items, similar to #2.
+### 4. Inconsistency with OCR
+- The clarity of the handwritten image matters, write as clearly as possible.
+
+---
+
+## Future
+
+### 1. Implement React Native for mobile phone use to uplaod/take an image from a smart phone.
+### 2. Work on getting the links returned to not have 404 errors.
+### 3. Generate images based on the recipes.
+### 4. Add validation to the ingredients input to ensure the ingredients are food items.
